@@ -19,6 +19,7 @@ class CalculatorViewController: UIViewController {
     var tipValue = 0.10
     var stepperValue = 2
     var billTotal = 0.0
+    var finalBill = "0.0"
     
     @IBAction func tipChanged(_ sender: UIButton) {
         billTextField.endEditing(true)
@@ -48,9 +49,22 @@ class CalculatorViewController: UIViewController {
             
             let result = billTotal * (1 + tipValue) / Double(stepperValue)
             
-            let resultDecimal = String(format: "%.2f", result)
+            finalBill = String(format: "%.2f", result)
         }
+        self.performSegue(withIdentifier: "goToResults", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "goToResults" {
+            let destinationVC = segue.destination as! ResultsViewController
+            
+            destinationVC.result = finalBill
+            destinationVC.tip = Int(tipValue*100)
+            destinationVC.split = stepperValue
+        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
     
     
