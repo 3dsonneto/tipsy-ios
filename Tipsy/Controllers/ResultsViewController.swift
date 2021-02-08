@@ -9,6 +9,7 @@
 import UIKit
 
 class ResultsViewController: UIViewController {
+    
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var settingsLabel: UILabel!
     
@@ -19,6 +20,7 @@ class ResultsViewController: UIViewController {
     }
     
     @IBAction func recalculatePressed(_ sender: UIButton) {
+        
     }
     
     /*
